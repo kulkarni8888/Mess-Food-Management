@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:scrollbars="none">
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/activity_profile"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_centerInParent="true"
+
+        tools:context="com.example.vasuchand.messfood.Profile">
+
+        <android.support.design.widget.AppBarLayout
+            android:id="@+id/appBarLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:elevation="0dp"
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto">
+            <include
+                android:id="@+id/toolbar"
+                layout="@layout/toolba_profile"/>
+        </android.support.design.widget.AppBarLayout>
+
+        <TextView
+
+            android:layout_marginTop="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Coupons Left"
+            android:textSize="28sp"
+            android:textColor="@color/grey"
+            android:layout_gravity="center_horizontal"
+            android:fontFamily="sans-serif-condensed"
+
+            />
+        <TextView
+
+            android:id="@+id/t1"
+            android:layout_marginTop="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="BreakFast"
+            android:textColor="@color/grey"
+            android:textSize="24sp"
+            android:layout_marginLeft="15dp"
+            android:fontFamily="sans-serif-condensed"
+
+            />
+        <TextView
+
+            android:id="@+id/t2"
+            android:layout_marginTop="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Lunch"
+            android:textSize="24sp"
+            android:textColor="@color/grey"
+            android:layout_marginLeft="15dp"
+            android:fontFamily="sans-serif-condensed"
+
+            />
+        <TextView
+
+            android:id="@+id/t3"
+            android:layout_marginTop="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Snack"
+            android:textColor="@color/grey"
+            android:textSize="24sp"
+            android:layout_marginLeft="15dp"
+            android:fontFamily="sans-serif-condensed"
+
+            />
+        <TextView
+            android:id="@+id/t4"
+            android:layout_marginTop="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Dinner"
+            android:textSize="24sp"
+            android:textColor="@color/grey"
+            android:layout_marginLeft="15dp"
+            android:fontFamily="sans-serif-condensed"
+
+            />
+        <TextView
+
+            android:layout_marginTop="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Share Your Coupon"
+            android:textSize="28sp"
+            android:textColor="@color/grey"
+            android:layout_gravity="center_horizontal"
+            android:fontFamily="sans-serif-condensed"
+
+            />
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/sharecoupon"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="16dp">
+
+            <RadioButton
+                android:id="@+id/radioButton1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="radioButtonClicked"
+                android:layout_marginLeft="15dp"
+                android:text="BreakFast" />
+
+            <RadioButton
+                android:id="@+id/radioButton2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="radioButtonClicked"
+                android:layout_marginLeft="15dp"
+                android:text="Lunch" />
+            <RadioButton
+                android:id="@+id/radioButton3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:checked="false"
+                android:onClick="radioButtonClicked"
+                android:text="Snack" />
+
+            <RadioButton
+                android:id="@+id/radioButton4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:checked="false"
+                android:onClick="radioButtonClicked"
+                android:text="Dinner" />
+
+
+        </RadioGroup>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="5dp">
+            <EditText
+                android:id="@+id/e1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="textEmailAddress"
+                android:textColor="@color/grey"
+                android:hint="Email: vasu@iiitd.ac.in"
+                android:textColorHint="@color/grey"
+                android:layout_marginLeft="15dp"
+                />
+            <EditText
+                android:id="@+id/e2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="numberDecimal"
+                android:textColor="@color/grey"
+                android:hint="2 coupons "
+                android:textColorHint="@color/grey"
+                android:layout_marginLeft="25dp"
+                />
+
+        </LinearLayout>
+        <Button
+            android:id="@+id/b1"
+            android:fontFamily="sans-serif-medium"
+            android:textAllCaps="false"
+            android:layout_width="170dp"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:text="Share"
+            android:textColor="#455268"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="15dp"
+            android:background="@drawable/button_boundary"
+            />
+
+        <View
+            android:layout_marginTop="15dp"
+            android:layout_width="fill_parent"
+            android:layout_height="2dp"
+            android:background="@color/colorPrimary"
+
+            />
+         <Button
+             android:id="@+id/b2"
+             android:layout_marginTop="20dp"
+             android:textSize="20dp"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:background="@drawable/button_boundary"
+             android:text="Logout"/>
+
+    </LinearLayout>
+</ScrollView>

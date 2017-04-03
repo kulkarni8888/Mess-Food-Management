@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#01BC00</color>
+    <color name="colorPrimaryDark">#1AB132</color>
+    <color name="colorAccent">#01BC00</color>
+    <color name="black">#000</color>
+    <color name="food_menu">#EC3E02</color>
+    <color name="orange">#FE7C02</color>
+    <color name="green">#1dbb36</color>
+    <color name="red">#CC473E</color>
+    <color name="grey">#555555</color>
+    <color name="white">#fff</color>
+    <color name="show_coupon">#455268</color>
+    <color name="blue">#4885ED</color>
+</resources>
