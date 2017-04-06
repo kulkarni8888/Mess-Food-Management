@@ -26,9 +26,10 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.MutableData;
-import com.google.firebase.database.Query;
 import com.google.firebase.database.Transaction;
-import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.messaging.FirebaseMessaging;
+
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -42,10 +43,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.GregorianCalendar;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -113,6 +112,8 @@ public class MainActivity extends AppCompatActivity {
         mMinute = cc.get(Calendar.MINUTE);
         System.out.println("time_format" + String.format("%02d:%02d", mHour, mMinute));
 
+        FirebaseMessaging.getInstance().subscribeToTopic("test");
+        FirebaseInstanceId.getInstance().getToken();
 
 
         //System.out.println("vasuuuuu "+ date + "... ... " +getdate());
@@ -148,6 +149,10 @@ public class MainActivity extends AppCompatActivity {
                 MainActivity.this.startActivity(myIntent);
             }
         });
+        /*
+         Token
+         */
+
 
 
     }
@@ -1337,11 +1342,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public Transaction.Result doTransaction(final MutableData currentData) {
                 if (currentData.getValue() == null ||(Long) currentData.getValue()==0) {
-                    System.out.println( "countpeople " +currentData.getValue());
+                    //System.out.println( "countpeople " +currentData.getValue());
                     currentData.setValue(1);
                 } else {
                     currentData.setValue((Long) currentData.getValue() + 1);
-                    decreasecoupons(menu);
+                    //System.out.println("*************DONE************************");
+
                 }
                 return Transaction.success(currentData);
             }
@@ -1349,6 +1355,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onComplete(DatabaseError databaseError, boolean b, DataSnapshot dataSnapshot) {
 
+                decreasecoupons(menu);
+                System.out.println("*************DONE************************");
 
             }
 
@@ -1382,14 +1390,17 @@ public class MainActivity extends AppCompatActivity {
 
         DatabaseReference ref = databaseReference.child(id).child(menu);
 
+        //System.out.println("*****called******");
         ref.runTransaction(new Transaction.Handler() {
             @Override
             public Transaction.Result doTransaction(final MutableData currentData) {
                 if (currentData.getValue() == null ||(Long) currentData.getValue()==0) {
-                    System.out.println( "countpeople " +currentData.getValue());
+                   // System.out.println("************Done************");
                     currentData.setValue(1);
                 } else {
+                    //System.out.println("************Done2************");
                     currentData.setValue((Long) currentData.getValue() - 1);
+
                 }
                 return Transaction.success(currentData);
             }
@@ -1416,11 +1427,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public Transaction.Result doTransaction(final MutableData currentData) {
                 if (currentData.getValue() == null ||(Long) currentData.getValue()==0) {
-                    //System.out.println( "countpeople " +currentData.getValue());
+                     //System.out.println( "countpeople " +currentData.getValue());
                     currentData.setValue(0);
                 } else {
                     currentData.setValue((Long) currentData.getValue() - 1);
-                    increasedcoupons(menu);
+                    System.out.println( "****decreased count ****** " +currentData.getValue());
+
                 }
                 return Transaction.success(currentData);
             }
@@ -1428,6 +1440,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onComplete(DatabaseError databaseError, boolean b, DataSnapshot dataSnapshot) {
 
+                //Toast.makeText(context, " !", Toast.LENGTH_SHORT).show();
+                increasedcoupons(menu);
 
             }
 
@@ -1465,17 +1479,18 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public Transaction.Result doTransaction(final MutableData currentData) {
                 if (currentData.getValue() == null ||(Long) currentData.getValue()==0) {
-                    System.out.println( "countpeople " +currentData.getValue());
+                    System.out.println( "Increased count  " +currentData.getValue());
                     currentData.setValue(1);
                 } else {
                     currentData.setValue((Long) currentData.getValue() + 1);
+                    System.out.println("update count here also");
                 }
                 return Transaction.success(currentData);
             }
 
             @Override
             public void onComplete(DatabaseError databaseError, boolean b, DataSnapshot dataSnapshot) {
-
+                Toast.makeText(context, "Changes Succesfully made !", Toast.LENGTH_SHORT).show();
 
             }
 

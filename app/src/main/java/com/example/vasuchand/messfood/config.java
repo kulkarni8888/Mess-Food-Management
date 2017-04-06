@@ -40,4 +40,13 @@ public class config {
 
     public static String users = "User";
 
+    public static  String token = "Token";
+
+    public static String tokencolum ="Tokens";
+
+    public static String email = "email";
+
+    public static String server_auth = "AAAAleZ1JC8:APA91bHw7x4dZF_oeQc2lGFT6j4lcdJyiEO9Yje7OVz3gesday_Sqq3HZPI2Qi_MgapX-AndLwHm98sL2yGmHtg5iHvdg5waEiJFlWxap-J_PXfzaSt73KWFsrvlDNmWq0Ay1U7oXcjk";
+
+
 }

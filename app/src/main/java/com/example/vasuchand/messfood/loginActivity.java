@@ -15,6 +15,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.vasuchand.messfood.fcmnotification.Token;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -127,6 +128,7 @@ public class loginActivity extends AppCompatActivity implements View.OnClickList
         databaseReference = FirebaseDatabase.getInstance().getReference(menu);
          id = databaseReference.push().getKey();
         session.setuserid(context,config.userid,id);
+        session.setemail(context,config.email,email);
         couponleft couponleft = new couponleft(email,30, 30, 30, 30);
         databaseReference.child(id).setValue(couponleft);
 
@@ -140,11 +142,25 @@ public class loginActivity extends AppCompatActivity implements View.OnClickList
        // couponleft couponleft = new couponleft(email,30, 30, 30, 30);
         Users user = new Users(id,email);
         databaseReference.child(id).setValue(user);
+
+        token(id,email);
         progressDialog.dismiss();
-        Intent myIntent = new Intent(loginActivity.this, MainActivity.class);
-        loginActivity.this.startActivity(myIntent);
 
 
+    }
+
+    public void token(String id, String email)
+    {
+        String token = session.getPreferences(context,config.token);
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference(config.tokencolum);
+
+
+        Token tkn= new Token(id,token,email);
+
+        //System.out.println(id + " "  +email);
+        databaseReference.child(id).setValue(tkn);
+        finish();
+        startActivity(new Intent(loginActivity.this,MainActivity.class));
     }
 
 }

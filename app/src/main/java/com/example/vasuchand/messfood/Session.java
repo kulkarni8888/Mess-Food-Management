@@ -144,6 +144,23 @@ public class Session {
 
     }
 
+    public void settoken(Context context, String key, String value) {
+
+        SharedPreferences.Editor editor = context.getSharedPreferences(Module_Pref, Context.MODE_PRIVATE).edit();
+        editor.putString(key,value);
+        editor.commit();
+
+    }
+    public void setemail(Context context, String key, String value) {
+
+        SharedPreferences.Editor editor = context.getSharedPreferences(Module_Pref, Context.MODE_PRIVATE).edit();
+        editor.putString(key,value);
+        editor.commit();
+
+    }
+
+
+
 
 
     public  String getPreferences(Context context, String key) {

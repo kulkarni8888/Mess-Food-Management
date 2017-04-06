@@ -13,6 +13,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.vasuchand.messfood.fcmnotification.Token;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -22,6 +23,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
+import java.util.Map;
 
 public class Signin extends AppCompatActivity implements View.OnClickListener {
 
@@ -54,7 +57,7 @@ public class Signin extends AppCompatActivity implements View.OnClickListener {
 
     private  void userlogin()
     {
-        String email = e1.getText().toString();
+        final String email = e1.getText().toString();
         String password = e2.getText().toString();
 
         if(TextUtils.isEmpty(email))
@@ -74,20 +77,24 @@ public class Signin extends AppCompatActivity implements View.OnClickListener {
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-                        progressDialog.dismiss();
+
                         if(task.isSuccessful())
                         {
-                            finish();
-                            startActivity(new Intent(Signin.this,MainActivity.class));
+
                             session.setBreakFastT(context,"breakfast",false);
                             session.setDinnerT(context,"dinner",false);
                             session.setSnackT(context,"snack",false);
                             session.setLunchT(context,"lunch",false);
+
+                            savedata(email);
+
+
                             //System.out.println("vasu ." +session.isFirstTimeLaunch(context,"breakfast"));
                             //overridePendingTransition(R.anim.animate_left_to_right, R.anim.animate_right_to_left);
                         }
                         else
                         {
+                            progressDialog.dismiss();
                             Toast.makeText(context, "User Not exist , Please Enter Valid Email", Toast.LENGTH_SHORT).show();
                         }
                     }
@@ -99,7 +106,7 @@ public class Signin extends AppCompatActivity implements View.OnClickListener {
 
         if(view==b1)
         {
-           userlogin();
+            userlogin();
         }
         else if(view ==t1)
         {
@@ -107,6 +114,52 @@ public class Signin extends AppCompatActivity implements View.OnClickListener {
             Signin.this.startActivity(myIntent);
         }
 
+    }
+
+    public void savedata(final String email)
+    {
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference(config.users);
+        ref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot snapshot) {
+                progressDialog.dismiss();
+
+                int flag = 0;
+                for (DataSnapshot child : snapshot.getChildren()) {
+                    System.out.println("Im here" + child.getValue());
+                    Map<String, String> model = (Map<String, String>) child.getValue();
+                    if (model.get("email").equals(email)) {
+                        String id = model.get("id");
+                        session.setuserid(context,config.userid,id);
+                        session.setemail(context,config.email,email);
+                        token(id,email);
+
+                    }
+
+                }
+            }
+
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+
+        });
+    }
+
+    public void token(String id, String email)
+    {
+         String token = session.getPreferences(context,config.token);
+         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference(config.tokencolum);
+
+
+        Token tkn= new Token(id,token,email);
+
+        //System.out.println(id + " "  +email);
+        databaseReference.child(id).setValue(tkn);
+        finish();
+        startActivity(new Intent(Signin.this,MainActivity.class));
     }
 
 }
