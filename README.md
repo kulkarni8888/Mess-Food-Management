@@ -9,17 +9,17 @@ App Contains four card breakfast , lunch , evening snacks , dinners . Each card 
 The order of card is as per upcoming event (breakfast,lunch,dinner) . You can share your coupons amongs your friends circle.
 
 ###### Home page
-<img src="homescreen.PNG" width="250" height = "400">
+<img src="homescreen.png" width="250" height = "400">
 
 
 ###### Student Details
-<img src="stats.PNG" width="250" height = "400">
+<img src="stats.png" width="250" height = "400">
 
 ###### Coupon Sharing
-<img src="sharecoupon.PNG" width="250" height = "400">
+<img src="sharecoupon.png" width="250" height = "400">
 
 ###### Coupon Sharing
-<img src="sharing.PNG" width="250" height = "400">
+<img src="sharing.png" width="250" height = "400">
 
 
 
