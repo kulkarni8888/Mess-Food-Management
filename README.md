@@ -8,6 +8,18 @@ This app solely based on user study what they want in app , what options should 
 App Contains four card breakfast , lunch , evening snacks , dinners . Each card is having menu items and timer to response. Every card updated after deadline passed with provided menu for next day .
 The order of card is as per upcoming event (breakfast,lunch,dinner) . You can share your coupons amongs your friends circle.
 
+###### Home page
+<img src="homescreen.PNG" width="250" height = "400">
+
+
+###### Student Details
+<img src="stats.PNG" width="250" height = "400">
+
+###### Coupon Sharing
+<img src="sharecoupon.PNG" width="250" height = "400">
+
+###### Coupon Sharing
+<img src="sharing.PNG" width="250" height = "400">
 
 
 
